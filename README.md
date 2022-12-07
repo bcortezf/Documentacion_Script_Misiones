@@ -14,6 +14,13 @@ De manera que tras comprender la lectura, puedas crear tus propias misiones.
 Para comprender la estructura de una misión, primero hay que ver un ejemplo detallado:
 
 **Esta es una misión que spawnea un sultan3, el cual debe llevarse de un punto A a un punto B.**
+
+<details> 
+	<summary> Titulo de la info </summary>
+
+
+` ``json
+
 ```lua
 {
 	-- Nombre interno de la misión. Debe ser único y servira para enlazarla a una opción de dialogo (lo veremos más adelante)
@@ -63,6 +70,8 @@ Para comprender la estructura de una misión, primero hay que ver un ejemplo det
 	},
 },
 ```
+
+</details>
 
 ## Desglose de parámetros
 - **`key`**: Debe mantener un formato similar a los ejemplos. Y lo ideal es que mantenga el contexto de la mision, tanto del NPC que te da la mision, como de lo que se trata. Ejemplo: **Graveyard_Rob_Vehicle**: Este nombre indica que la misión se realiza en *Graveyard*, y se trata de un *robo de vehiculo*.
@@ -172,4 +181,7 @@ Un `dialog` tiene:
 
 
 Nota: Un dialogo puede tener muchas opciones, pero se verán limitadas por el espacio en pantalla. Lo máximo que he probado yo, son 6.
+
+
+
 
