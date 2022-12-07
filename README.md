@@ -4,10 +4,10 @@ De manera que tras comprender la lectura, puedas crear tus propias misiones.
 
 ## Índice
 - [Documentación de Misiones](#Documentación-de-Misiones)
-  - [Índice](##Índice)
-  - [Análisis de una misión](##Análisis-de-una-misión)
-  - [Desglose de parámetros](##Desglose-de-parámetros)
-  - [Tipos de Misiones](##Tipos-de-Misiones)
+  - [Índice](#Índice)
+  - [Análisis de una misión](#Análisis-de-una-misión)
+  - [Desglose de parámetros](#Desglose-de-parámetros)
+  - [Tipos de Misiones](#Tipos-de-Misiones)
 
 
 ## Análisis de una misión
