@@ -156,6 +156,12 @@ Este apartado buscará documentar todos los parametros que un NPC puede tener
 ```
 </details>
 
+## Desglose de parámetros
+- **`npc`**: Nombre del modelo del NPC. Puedes encontrar todos los NPC [en este sitio](https://wiki.rage.mp/index.php?title=Peds)
+- **`name`**: Nombre del NPC que se mostrará en el dialogo
+
+
+
 # Explicación Dialogos
 Para comprender mejor la estructura del NPC, tomemos uno de los dialogos y analicemoslo.
 <details>
