@@ -13,8 +13,6 @@ De manera que tras comprender la lectura, puedas crear tus propias misiones.
 ## Análisis de una misión
 Para comprender la estructura de una misión, primero hay que ver un ejemplo detallado:
 
-
-
 **Esta es una misión que spawnea un sultan3, el cual debe llevarse de un punto A a un punto B.**
 ```lua
 {
@@ -67,14 +65,12 @@ Para comprender la estructura de una misión, primero hay que ver un ejemplo det
 ```
 
 ## Desglose de parámetros
-- `key`: Debe mantener un formato similar a los ejemplos. Y lo ideal es que mantenga el contexto de la mision, tanto del NPC que te da la mision, como de lo que se trata. Ejemplo: **Graveyard_Rob_Vehicle**: Este nombre indica que la misión se realiza en *Graveyard*, y se trata de un *robo de vehiculo*.
-- `description`: Debe describir la misión de manera breve y concisa, que al leerse, se comprenda inmediatamente lo que se debe hacer. Ejemplo: **Roba el vehículo de Graveyard y llevalo al punto de entrega.**
-- `type`: El tipo de misión. Por ahora solo hay 2. Al seleccionar un tipo, se debe agregar un parametro con el mismo nombre del tipo seleccionado. De esa manera se especifican las variables asociadas al tipo seleccionado.
-- `waypoint/transport`: Como se mencionó anteriormente, se agrega un parametro y dentro de este, estarán definidas las distintas variables dependiendo del tipo de misión. (Ver [Tipos de Misiones](#Tipos-de-misionnes))
+- **`key`**: Debe mantener un formato similar a los ejemplos. Y lo ideal es que mantenga el contexto de la mision, tanto del NPC que te da la mision, como de lo que se trata. Ejemplo: **Graveyard_Rob_Vehicle**: Este nombre indica que la misión se realiza en *Graveyard*, y se trata de un *robo de vehiculo*.
+- **`description`**: Debe describir la misión de manera breve y concisa, que al leerse, se comprenda inmediatamente lo que se debe hacer. Ejemplo: **Roba el vehículo de Graveyard y llevalo al punto de entrega.**
+- **`type`**: El tipo de misión. Por ahora solo hay 2. Al seleccionar un tipo, se debe agregar un parametro con el mismo nombre del tipo seleccionado. De esa manera se especifican las variables asociadas al tipo seleccionado.
+- **`waypoint/transport`**: Como se mencionó anteriormente, se agrega un parametro y dentro de este, estarán definidas las distintas variables dependiendo del tipo de misión. (Ver [Tipos de Misiones](#Tipos-de-misionnes))
 
  
-
-
 
 ## Tipos de Misiones
 Una misión tiene distintos tipos, a continuación se detallarán:
@@ -83,38 +79,15 @@ Una misión tiene distintos tipos, a continuación se detallarán:
 	- **`from`**: `/coords` de aparición del vehículo
 	- **`to`**: `/coords` de entrega del vehículo
 	- **`timerOutsideVehicle`**: Cantidad de segundos que un jugador puede estar afuera de su vehiculo. Al llegar a 0, la misión fallará.
+- **`waypoint`** : Misión asociada a llegar a un punto X
+	- **`coords`**: `/coords` de destino
+	- **`msgAtArrival`**: Mensaje que aparecerá al llegar al destino
+	- **`timer`**: Tiempo límite en segundos para llegar al destino. Si llega a 0, termina la misión
+	- **`npc`**: Si este parametro existe, significa que el NPC especificado, te seguirá durante tu trayecto.
+		-  **`name`**: Identificador_Unico del NPC
+		- (Se agregarán más parametros)
 
-## Ejemplo de una misión
-### Mision #1
-Misión que trata de llevar un **`sultan3`** del puerto de Los Santos a un Garage en la ciudad.
 
-#### Detalle de Mision:
-```lua
-{
-	key = "Delivery_Thief_Vehicle_01",
-	description = "Entrega el ~b~vehículo~s~ en el ~y~punto de entrega~s~ antes de que se acabe el tiempo.",
-	type = "transport",
-	transport = {
-		vehicle = "sultan3",
-		from = vec(-1311.46, -600.84, 26.98, 85.72),
-		to = vec(826.27, -156.32, 26.75, 75.40),
-		timerOutsideVehicle = 60, 
-	},
-	timer = 300,
-	npc = {
-		name = "NPC_Robberies",
-		dialog = "Robbery_01"
-	},
-	completedAtArrive = true,
-	rewardsWhenActive = {
-		{ item = "medikit", amount = 1 },
-	},
-	rewards = {
-		{ item = "money", value = "10000" },
-		{ item = "xp", value = "50" },
-	},
-},
-```
 
 
 #### Detalle de NPC:
