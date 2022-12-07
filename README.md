@@ -15,11 +15,9 @@ Se recomienda revisar  **la documentacion de NPCs primero**.
 | `description`**(\*)** | | `texto`     | | Texto que mostrará al activarse la misión. ![Logo](https://i.imgur.com/Le3AiMx.png) |
 | `timer` | | `segundos`     | | Definirá el tiempo que durará la mision. Si se acaba, fallará. |
 | `type`**(\*)** | | `texto`     | | Tipo de misión. |
-|
 | `rewardsWhenActive`**(\*)** |  |   | | Recompensas que dará al activarse la mision  |
 |  | `item` | `nombre_de_item` \| `xp` \| `money`     | | Nombre Interno de Item (ej. **water**)  |
 |                            | `amount` | `numero`      | | Monto a dar del **item** especificado|
-|
 | `transport` |`vehicle`| `vehicleModel`|  |  Vehículo a transportar |  
 |             |`from` | `vec(x,y,z,h)`  |  |  Punto de aparición del vehículo |  
 |             |`to`   | `vec(x,y,z,h)` |  |  Vehículo a transportar |  
