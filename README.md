@@ -1,17 +1,19 @@
-# Documentación de Misiones
+#Documentación de Misiones
 Esta guía buscará documentar todos los parámetros que una misión pueda tener.
 De manera que tras comprender la lectura, puedas crear tus propias misiones.
 
 ## Índice
-- [Documentación de Misiones](#Documentación de Misiones)
-	- [Índice](##Índice)
-	- [Análisis de una misión](##Análisis de una misión)
-	- [Desglose de parámetros](##Desglose de parámetros)
-	- [Tipos de Misiones](##Tipos de Misiones)
+- [Documentación de Misiones](#Documentación-de-Misiones)
+  - [Índice](##Índice)
+  - [Análisis de una misión](##Análisis-de-una-misión)
+  - [Desglose de parámetros](##Desglose-de-parámetros)
+  - [Tipos de Misiones](##Tipos-de-Misiones)
 
 
 ## Análisis de una misión
 Para comprender la estructura de una misión, primero hay que ver un ejemplo detallado:
+
+
 
 **Esta es una misión que spawnea un sultan3, el cual debe llevarse de un punto A a un punto B.**
 ```lua
