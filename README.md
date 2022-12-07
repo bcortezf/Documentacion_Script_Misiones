@@ -83,22 +83,21 @@ Para comprender la estructura de una misión, primero hay que ver un ejemplo det
 ## Tipos de Misiones
 Una misión tiene distintos tipos detallados a continuación:
 
-<details> <summary> transport </summary>
+	
+<details><summary> transport </summary>
+
 - **`vehicle`**: modelo del vehiculo a transportar
 - **`from`**: `/coords` de aparición del vehículo
 - **`to`**: `/coords` de entrega del vehículo
 - **`timerOutsideVehicle`**: Cantidad de segundos que un jugador puede estar afuera de su vehiculo. Al llegar a 0, la misión fallará.
 </details>
 
-<details> <summary> waypoint </summary>
-- **`coords`**: `/coords` de destino
-- **`msgAtArrival`**: Mensaje que aparecerá al llegar al destino
-- **`timer`**: Tiempo límite en segundos para llegar al destino. Si llega a 0, termina la misión
-- **`npc`**: Si este parametro existe, significa que el NPC especificado, te seguirá durante tu trayecto.
-	-  **`name`**: Identificador_Unico del NPC
-	- (Se agregarán más parametros)
-</details>	
-	
+<details>
+<summary> waypoint </summary>
+
+Todo lo que estaba adentro de esto
+
+</details>
 
 # Documentación de NPC
 Este apartado buscará documentar todos los parametros que un NPC puede tener
