@@ -10,6 +10,7 @@ De manera que tras comprender la lectura, puedas crear tus propias misiones.
   - [Tipos de Misiones](#Tipos-de-Misiones)
 
 - [Documentación de NPC](#Documentación-de-NPC)
+  - [Ejemplo de NPC](#Ejemplo-de-NPC)
 
 
 ## Análisis de una misión
@@ -107,7 +108,7 @@ Una misión tiene distintos tipos detallados a continuación:
 Este apartado buscará documentar todos los parametros que un NPC puede tener
 
 
-#### Detalle de NPC:
+#### Ejemplo de NPC
  ```lua
 ["Jorge_Herido"] = {
 	-- Modelo del NPC. (https://wiki.rage.mp/index.php?title=Peds)
@@ -193,7 +194,7 @@ Este apartado buscará documentar todos los parametros que un NPC puede tener
 },
 ```
 
-# Explicación NPC
+# Explicación Dialogos
 Para comprender mejor la estructura del NPC, tomemos uno de los dialogos y analicemoslo.
 
 ```lua
