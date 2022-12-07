@@ -9,17 +9,16 @@ De manera que tras comprender la lectura, puedas crear tus propias misiones.
   - [Desglose de parámetros](#Desglose-de-parámetros)
   - [Tipos de Misiones](#Tipos-de-Misiones)
 
+- [Documentación de NPC](#Documentación-de-NPC)
+
 
 ## Análisis de una misión
 Para comprender la estructura de una misión, primero hay que ver un ejemplo detallado:
 
-**Esta es una misión que spawnea un sultan3, el cual debe llevarse de un punto A a un punto B.**
 
 <details> 
-	<summary> Titulo de la info </summary>
-
-
-` ``json
+	<summary> Mostrar Detalle de Misión</summary>
+**Esta es una misión que spawnea un sultan3, el cual debe llevarse de un punto A a un punto B.**
 
 ```lua
 {
@@ -82,25 +81,63 @@ Para comprender la estructura de una misión, primero hay que ver un ejemplo det
  
 
 ## Tipos de Misiones
-Una misión tiene distintos tipos, a continuación se detallarán:
-- **`transport`** : Misión asociada a transportar un vehiculo de un punto a otro.
-	- **`vehicle`**: modelo del vehiculo a transportar
-	- **`from`**: `/coords` de aparición del vehículo
-	- **`to`**: `/coords` de entrega del vehículo
-	- **`timerOutsideVehicle`**: Cantidad de segundos que un jugador puede estar afuera de su vehiculo. Al llegar a 0, la misión fallará.
-- **`waypoint`** : Misión asociada a llegar a un punto X
-	- **`coords`**: `/coords` de destino
-	- **`msgAtArrival`**: Mensaje que aparecerá al llegar al destino
-	- **`timer`**: Tiempo límite en segundos para llegar al destino. Si llega a 0, termina la misión
-	- **`npc`**: Si este parametro existe, significa que el NPC especificado, te seguirá durante tu trayecto.
-		-  **`name`**: Identificador_Unico del NPC
-		- (Se agregarán más parametros)
+Una misión tiene distintos tipos detallados a continuación:
 
+<details> <summary> transport </summary>
+- **`vehicle`**: modelo del vehiculo a transportar
+- **`from`**: `/coords` de aparición del vehículo
+- **`to`**: `/coords` de entrega del vehículo
+- **`timerOutsideVehicle`**: Cantidad de segundos que un jugador puede estar afuera de su vehiculo. Al llegar a 0, la misión fallará.
+</details>
 
+<details> <summary> waypoint </summary>
+- **`coords`**: `/coords` de destino
+- **`msgAtArrival`**: Mensaje que aparecerá al llegar al destino
+- **`timer`**: Tiempo límite en segundos para llegar al destino. Si llega a 0, termina la misión
+- **`npc`**: Si este parametro existe, significa que el NPC especificado, te seguirá durante tu trayecto.
+	-  **`name`**: Identificador_Unico del NPC
+	- (Se agregarán más parametros)
+</details>	
+	
+
+# Documentación de Misiones
+Este apartado buscará documentar todos los parametros que un NPC puede tener
 
 
 #### Detalle de NPC:
+ ```lua
+["Jorge_Herido"] = {
+	-- Modelo del NPC. (https://wiki.rage.mp/index.php?title=Peds)
+	npc = 'a_m_y_bevhills_01', 
+	
+	-- Nombre del NPC que se mostrará en el dialogo
+	name = 'Joel', 
 
+	-- (opcional) Subtitulo
+	subtitle = 'Empleado de Rogers', 
+	
+	-- /coords de aparición del NPC
+	coords = vec(-627.34, -1567.17, 25.00, 181.67), 
+	
+	-- Define si el ped estará reproduciendo un Scenario (https://bit.ly/3ui4V3N)
+	scenario = "WORLD_HUMAN_STUPOR", 
+	
+	-- Parametros para arreglar la posición de la camara en caso de error
+	camOffset = vector3(0.85, 0.0, 0.0), 
+	
+	-- Parametros para arreglar la rotacion de la camara en caso de error
+	camRotation = vector3(-40.0, 0.0, 0.0),
+	
+	-- Distancia a la que debe estar el jugador para interactuar con el NPC
+	interactionRange = 2.5, 
+	
+	-- Lista de mensajes que mostrará cuando el NPC no tenga ninguna misión disponible.
+	noMissions = { "Agh.. estoy.. muriendo..", "Oh, mierda... *agh*" }, 
+	
+	
+	dialogs = { }
+}
+```
 
 
 ```lua
