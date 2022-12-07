@@ -12,7 +12,7 @@ Se recomienda revisar  **la documentacion de NPCs primero**.
 |Parámetro padre| Parámetro hijo            | Tipo        |  | Description                | 
 |:-| :--------| :-------    |:-----| :------------------------- | 
 | `key`**(\*)** | | `texto`     | | Nombre interno de la misión. No puede repetirse. Ej: **Roggers_vehicle_delivery01** |
-| `description`**(\*)** | | `texto`     | | Texto que mostrará al activarse la misión. ![Logo](https://i.imgur.com/adOIDNe.png) |
+| `description`**(\*)** | | `texto`     | | Texto que mostrará al activarse la misión. ![Logo](https://i.imgur.com/Le3AiMx.png) |
 | `timer` | | `segundos`     | | Definirá el tiempo que durará la mision. Si se acaba, fallará. |
 | `type`**(\*)** | | `texto`     | | Tipo de misión. |
 |
