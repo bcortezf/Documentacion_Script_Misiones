@@ -1,37 +1,86 @@
-# Documentacion_Script_Misiones
-Documentacion del script de misiones que estoy desarrollando para HispanoRP
+# Documentación de Misiones
+Esta guía buscará documentar todos los parámetros que una misión pueda tener.
+De manera que tras comprender la lectura, puedas crear tus propias misiones.
+
+# Índice
+- [Documentación de Misiones](#Documentación de Misiones)
+	- [Índice](#Índice)
+	- [Análisis de una misión](#Análisis de una misión)
+	- [Desglose de parámetros](#Desglose de parámetros)
+	- [Tipos de Misiones](#Tipos de Misiones)
 
 
-## Documentación de Misiones
-Esta guía buscará documentar todos los posibles parámetros que una misión puede tener..
-Se recomienda revisar  **la documentacion de NPCs primero**.
+## Análisis de una misión
+Para comprender la estructura de una misión, primero hay que ver un ejemplo detallado:
+
+**Esta es una misión que spawnea un sultan3, el cual debe llevarse de un punto A a un punto B.**
+```lua
+{
+	-- Nombre interno de la misión. Debe ser único y servira para enlazarla a una opción de dialogo (lo veremos más adelante)
+	key = "Delivery_Thief_Vehicle_01",
+	
+	-- Mensaje que aparecerá al inicio de la misión. Generalmente notifica lo que el jugador debe hacer
+	-- Ver Ejemplo (https://i.imgur.com/Le3AiMx.png)
+	description = "Entrega el ~b~vehículo~s~ en el ~y~punto de entrega~s~ antes de que se acabe el tiempo.",
+
+	-- Tipo de mision. Pueden ser: transport | waypoint
+	type = "transport",
+
+	-- Si el tipo de misión es transport, se agrega el parametro transport con sus parametros correspondientes
+	-- En este caso, transport tiene estos 4
+	transport = {
+		vehicle = "sultan3", -- Modelo del vehiculo a spawnear
+		from = vec(-1311.46, -600.84, 26.98, 85.72), -- /coords de spawn del vehiculo
+		to = vec(826.27, -156.32, 26.75, 75.40),-- /coords de entrega del vehiculo
+		timerOutsideVehicle = 60, -- Un contador opcional en Segundos que controla que el jugador no pase mucho tiempo fuera del vehiculo.
+	},
+
+	-- Tiempo límite en segundos para completar la misión. Si pasan los segundos especificados, la misión fallará.
+	timer = 300,
+	
+	-- Cada misión necesita tener un NPCs asociado con el cual tomarás esa misión.
+	npc = {
+		name = "NPC_Robberies", -- Identificador_Unico del NPC asociado
+		dialog = "Robbery_01" -- Identificador_Unico del dialogo que se abrirá para presentarte esta misión
+	},
+	-- Esto quiere decir, que para "tomar" esta misión, primero necesitas hablar con un NPC, ese NPC necesita un dialogo,
+	-- y ese dialogo necesita una opción que al seleccionarla, te active la misión.
+	-- (Lo veremos más adelante en la estructura del npc)
+
+	-- Te dará los items especificados apenas comience la misión.
+	-- En esta misión no tiene mucho sentido, pero en otras, se te podría dar un botiquín para ayudarte con la misión,
+	-- un bate, o cualquier item que te ayude con la misión.
+	rewardsWhenActive = {
+		{ item = "medikit", amount = 1 },
+	},
+
+	-- Te dará los items especificados cuando completes la misión
+	-- item puede ser <money> | <xp> | <o incluso el nombre de un item>
+	rewards = {
+		{ item = "water", value = "2" },
+		{ item = "money", value = "10000" },
+		{ item = "xp", value = "50" },
+	},
+},
+```
+
+## Desglose de parámetros
+- `key`: Debe mantener un formato similar a los ejemplos. Y lo ideal es que mantenga el contexto de la mision, tanto del NPC que te da la mision, como de lo que se trata. Ejemplo: **Graveyard_Rob_Vehicle**: Este nombre indica que la misión se realiza en *Graveyard*, y se trata de un *robo de vehiculo*.
+- `description`: Debe describir la misión de manera breve y concisa, que al leerse, se comprenda inmediatamente lo que se debe hacer. Ejemplo: **Roba el vehículo de Graveyard y llevalo al punto de entrega.**
+- `type`: El tipo de misión. Por ahora solo hay 2. Al seleccionar un tipo, se debe agregar un parametro con el mismo nombre del tipo seleccionado. De esa manera se especifican las variables asociadas al tipo seleccionado.
+- `waypoint/transport`: Como se mencionó anteriormente, se agrega un parametro y dentro de este, estarán definidas las distintas variables dependiendo del tipo de misión. (Ver [Tipos de Misiones](#ejemplo-de-una-misión))
+
+ 
 
 
-#### Lista de parametros
 
-|Parámetro padre| Parámetro hijo            | Tipo        |  | Description                | 
-|:-| :--------| :-------    |:-----| :------------------------- | 
-| `key`**(\*)** | | `texto`     | | Nombre interno de la misión. No puede repetirse. Ej: **Roggers_vehicle_delivery01** |
-| `description`**(\*)** | | `texto`     | | Texto que mostrará al activarse la misión. ![Logo](https://i.imgur.com/Le3AiMx.png) |
-| `timer` | | `segundos`     | | Definirá el tiempo que durará la mision. Si se acaba, fallará. |
-| `type`**(\*)** | | `texto`     | | Tipo de misión. |
-| `rewardsWhenActive`**(\*)** |  |   | | Recompensas que dará al activarse la mision  |
-|  | `item` | `nombre_de_item` \| `xp` \| `money`     | | Nombre Interno de Item (ej. **water**)  |
-|                            | `amount` | `numero`      | | Monto a dar del **item** especificado|
-| `transport` |`vehicle`| `vehicleModel`|  |  Vehículo a transportar |  
-|             |`from` | `vec(x,y,z,h)`  |  |  Punto de aparición del vehículo |  
-|             |`to`   | `vec(x,y,z,h)` |  |  Vehículo a transportar |  
-|             | `timerOutsideVehicle`| `seconds`|  |  Segundos que el jugador podrá abandonar el vehiculo. La misión fallará si llega a 0 |  
-|  | | | | |
-| `waypoint`  |`coords`| `vehicleModel`|  |  Vehículo a transportar |  
-|             |`msgAtArrival` | `vec(x,y,z,h)`  |  |  Punto de aparición del vehículo |
-|             |`completedAtArrival`|`true/false`|| |La misión se completa automaticamente al llegar al punto de destino  
-|             |`enemys`   | `PENDIENTE` |  |  Enemigos que aparecerán en la zona de destino |  
-|  | | | | |
-| `npc`  || |  | | NPC el cual que te dará esta misión. De esta manera el sistema detectará si tienes misión cuando hablas con el NPC |  
-|        |`name`| |  |  Nombre interno del NPC (**`key`**) |  
-|        |`dialog`| |   | Dialogo que abrirá para presentarte la misión (debe estar definido en los dialogos del mismo npc) |  
-
+## Tipos de Misiones
+Una misión tiene distintos tipos, a continuación se detallarán:
+- **`transport`** : Misión asociada a transportar un vehiculo de un punto a otro.
+	- **`vehicle`**: modelo del vehiculo a transportar
+	- **`from`**: `/coords` de aparición del vehículo
+	- **`to`**: `/coords` de entrega del vehículo
+	- **`timerOutsideVehicle`**: Cantidad de segundos que un jugador puede estar afuera de su vehiculo. Al llegar a 0, la misión fallará.
 
 ## Ejemplo de una misión
 ### Mision #1
