@@ -42,28 +42,28 @@ Misión que trata de llevar un **`sultan3`** del puerto de Los Santos a un Garag
 #### Detalle de Mision:
 ```lua
 {
-  key = "Delivery_Thief_Vehicle_01",
-  description = "Entrega el ~b~vehículo~s~ en el ~y~punto de entrega~s~ antes de que se acabe el tiempo.",
-  type = "transport",
-  transport = {
-    vehicle = "sultan3",
-    from = vec(-1311.46, -600.84, 26.98, 85.72),
-    to = vec(826.27, -156.32, 26.75, 75.40),
-    timerOutsideVehicle = 60, 
-   },
-   timer = 300,
-   npc = {
-    name = "NPC_Robberies",
-    dialog = "Robbery_01"
-   },
-   completedAtArrive = true,
-   rewardsWhenActive = {
-    { item = "medikit", amount = 1 },
-   },
-  rewards = {
-    { item = "money", value = "10000" },
-    { item = "xp", value = "50" },
-  },
+	key = "Delivery_Thief_Vehicle_01",
+	description = "Entrega el ~b~vehículo~s~ en el ~y~punto de entrega~s~ antes de que se acabe el tiempo.",
+	type = "transport",
+	transport = {
+		vehicle = "sultan3",
+		from = vec(-1311.46, -600.84, 26.98, 85.72),
+		to = vec(826.27, -156.32, 26.75, 75.40),
+		timerOutsideVehicle = 60, 
+	},
+	timer = 300,
+	npc = {
+		name = "NPC_Robberies",
+		dialog = "Robbery_01"
+	},
+	completedAtArrive = true,
+	rewardsWhenActive = {
+		{ item = "medikit", amount = 1 },
+	},
+	rewards = {
+		{ item = "money", value = "10000" },
+		{ item = "xp", value = "50" },
+	},
 },
 ```
 
@@ -74,72 +74,66 @@ Misión que trata de llevar un **`sultan3`** del puerto de Los Santos a un Garag
 
 ```lua
 ["NPC_Robberies"] = {
-		npc = 'mp_m_waremech_01',
-		name = 'Mike',
-		subtitle = 'Empleado de Rogers',
-		coords = vec(-612.23, -1609.33, 26.90, 350.10),
-		scenario = "WORLD_HUMAN_CLIPBOARD_FACILITY", -- https://bit.ly/3ui4V3N
-		camOffset = vector3(0.0, 0.0, 0.0),
-		camRotation = vector3(0.0, 0.0, 0.0),
-		interactionRange = 2.5, -- Distancia de interaccion
-		noMissions = { "¿Buscas algo? Pues no encontrarás nada..", "No tengo nada para tí, vete.", "¿Hmm? Fuera de aquí." },
-		dialogs = { 
-			["Robbery_01"] = {
-				dialog = 'Eh, tu.. Tengo un vehiculo para tí.. ¿Puedes entregarlo en un garage? Te pagaré bien..',
-				options = {
-					{ text = 'Vale', type = 'dialog', value = 'more_info' },
-					{ text = 'No, gracias', type = 'dialog', value = 'deny' },
-				},
+	npc = 'mp_m_waremech_01',
+	name = 'Mike',
+	subtitle = 'Empleado de Rogers',
+	coords = vec(-612.23, -1609.33, 26.90, 350.10),
+	scenario = "WORLD_HUMAN_CLIPBOARD_FACILITY", -- https://bit.ly/3ui4V3N
+	camOffset = vector3(0.0, 0.0, 0.0),
+	camRotation = vector3(0.0, 0.0, 0.0),
+	interactionRange = 2.5, -- Distancia de interaccion
+	noMissions = { "¿Buscas algo? Pues no encontrarás nada..", "No tengo nada para tí, vete.", "¿Hmm? Fuera de aquí." },
+	dialogs = { 
+		["Robbery_01"] = {
+			dialog = 'Eh, tu.. Tengo un vehiculo para tí.. ¿Puedes entregarlo en un garage? Te pagaré bien..',
+			options = {
+				{ text = 'Vale', type = 'dialog', value = 'more_info' },
+				{ text = 'No, gracias', type = 'dialog', value = 'deny' },
 			},
-			["deny"] = {
-				dialog = 'Entonces no vuelvas.',
-				options = {
-					{ text = 'Cerrar', type = 'close' },
-				},
+		},
+		["deny"] = {
+			dialog = 'Entonces no vuelvas.',
+			options = {
+				{ text = 'Cerrar', type = 'close' },
 			},
-			["Robbery_01_1"] = {
-				dialog = 'Bien, tengo un Sultán de exportación que debo entregar lo antes posible a un cliente. No lo dañes! O no te pagaré nada',
-				options = {
-					{ text = 'Bien, vamos allá.', type = 'mission', value = 'Delivery_Thief_Vehicle_01' },
-					{ text = 'Olvídalo', type = 'dialog', value = 'deny' }
-				},
-
-			},
-
-			["Delivery_Thief_Vehicle_01"] = {
-				dialog = "¿Que mierda haces? Ve a entregar el puto vehículo",
-				options = {
-					{ text = 'Vale, vale.. Estoy en ello', type = 'close' },
-					{ text = 'Tengo problemas.. ¿Podrías repetirme las instrucciones?', type = 'mission', value = "Delivery_Thief_Vehicle_01" },
-				},
-			},
+		},
+		["Robbery_01_1"] = {
+			dialog = 'Bien, tengo un Sultán de exportación que debo entregar lo antes posible a un cliente. No lo dañes! O no te pagaré nada',
+			options = {
+				{ text = 'Bien, vamos allá.', type = 'mission', value = 'Delivery_Thief_Vehicle_01' },
+				{ text = 'Olvídalo', type = 'dialog', value = 'deny' }
 			},
 
 		},
-		jobs = { -- Jobs que pueden interactuar con el npc
 
+		["Delivery_Thief_Vehicle_01"] = {
+			dialog = "¿Que mierda haces? Ve a entregar el puto vehículo",
+			options = {
+				{ text = 'Vale, vale.. Estoy en ello', type = 'close' },
+				{ text = 'Tengo problemas.. ¿Podrías repetirme las instrucciones?', type = 'mission', value = "Delivery_Thief_Vehicle_01" },
+			},
 		},
+		},
+
 	},
+	jobs = { -- Jobs que pueden interactuar con el npc
+
+	},
+},
 ```
 
 # Explicación NPC
 Para comprender mejor la estructura del NPC, tomemos uno de los dialogos y analicemoslo.
 
-```json
+```lua
 ["Robbery_01"] = { 
-                dialog = 'Eh, tu.. Tengo un vehiculo para tí.. ¿Puedes entregarlo en un garage? Te pagaré bien..',
-			  	options = {
-            
-				      	{ text = 'Vale', type = 'dialog', value = 'more_info' },
-				      	{ text = 'No, gracias', type = 'dialog', value = 'deny' },
-				      	{ text = 'OPCION ESPECIAL ', type = 'dialog', value = 'more_info', 
-                          requiredItems = { 
-                            { item = "medikit", amount = 1, removeOnInteract = true },
-						 } 
-             },
-                
-				      },
-			      },
+	dialog = 'Eh, tu.. Tengo un vehiculo para tí.. ¿Puedes entregarlo en un garage? Te pagaré bien..',
+	options = {
+		{ text = 'Vale', type = 'dialog', value = 'more_info' },
+		{ text = 'No, gracias', type = 'dialog', value = 'deny' },
+		{ text = 'OPCION ESPECIAL ', type = 'dialog', value = 'more_info', requiredItems = { { item = "medikit", amount = 1, removeOnInteract = true }	} },
+	},
+},
 ```
 
 Un `dialog` tiene:
