@@ -92,10 +92,14 @@ Una misión tiene distintos tipos detallados a continuación:
 - **`timerOutsideVehicle`**: Cantidad de segundos que un jugador puede estar afuera de su vehiculo. Al llegar a 0, la misión fallará.
 </details>
 
-<details>
-<summary> waypoint </summary>
+<details><summary> waypoint </summary>
 
-Todo lo que estaba adentro de esto
+- **`coords`**: `/coords` de destino
+- **`msgAtArrival`**: Mensaje que aparecerá al llegar al destino
+- **`timer`**: Tiempo límite en segundos para llegar al destino. Si llega a 0, termina la misión
+- **`npc`**: Si este parametro existe, significa que el NPC especificado, te seguirá durante tu trayecto.
+	-  **`name`**: Identificador_Unico del NPC
+	- (Se agregarán más parametros)
 
 </details>
 
