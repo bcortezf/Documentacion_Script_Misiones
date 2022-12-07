@@ -100,7 +100,7 @@ Una misión tiene distintos tipos detallados a continuación:
 </details>	
 	
 
-# Documentación de Misiones
+# Documentación de NPC
 Este apartado buscará documentar todos los parametros que un NPC puede tener
 
 
