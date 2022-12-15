@@ -11,6 +11,8 @@ De manera que tras comprender la lectura, puedas crear tus propias misiones.
 
 - [Documentación de NPC](#Documentación-de-NPC)
   - [Ejemplo de NPC](#Ejemplo-de-NPC)
+  
+- [Links Utiles](#Links-Utiles)
 
 
 ## Análisis de una misión
@@ -201,5 +203,8 @@ Un `dialog` tiene:
 Nota: Un dialogo puede tener muchas opciones, pero se verán limitadas por el espacio en pantalla. Lo máximo que he probado yo, son 6.
 
 
+# Links Utiles
+
+### [Lista de Peds](https://forge.plebmasters.de/peds)
 
 
