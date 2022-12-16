@@ -21,15 +21,10 @@ De manera que tras comprender la lectura, puedas crear tus propias misiones.
 Este apartado buscará entregar todos los parametros que un NPC pueda tener
 
 
-## Tipos de NPC
-Hasta la fecha, existen 3 tipos de NPC
-- **Informativos**: Son NPCs con dialogos y nada mas que eso. Sirve generalmente para informar sobre algo.
-- **Comerciantes**: Son NPCs que venderan, compraran o intercambiaran objetos con el jugador
-- **Misiones**: Son NPCs que le darán misiones al jugador.
 
 ### Ejemplo de NPC
 <details> 
-	<summary> 	Mostrar</summary>
+	<summary>Mostrar</summary>
 
 ```lua
 ["Jorge_Herido"] = { -- Identificador Interno del NPC
@@ -60,34 +55,104 @@ Hasta la fecha, existen 3 tipos de NPC
 	-- Lista de mensajes que mostrará cuando el NPC no tenga ninguna misión disponible.
 	noMissions = { "Agh.. estoy.. muriendo..", "Oh, mierda... *agh*" }, 
 	
+	-- Al interactuar con el NPC, abrira el dialogo especificado
+	-- Esto hará que el NPC sea Informativo. (Ver Tipos de NPC más abajo)
+	firstDialog = "greetings" 
 	
-	dialogs = { 
-		["Robbery_01"] = { 
-			dialog = 'Eh, tu.. Tengo un vehiculo para tí.. ¿Puedes entregarlo en un garage? Te pagaré bien..',
-			options = {
-				{ text = 'Vale', type = 'dialog', value = 'more_info' },
-				{ text = 'No, gracias', type = 'dialog', value = 'deny' },
-				{ text = 'OPCION ESPECIAL ', type = 'dialog', value = 'more_info', requiredItems = { { item = "medikit", amount = 1, removeOnInteract = true }	} },
-	},
-}, }
+	-- Aqui se definen los dialogos que el NPC tendrá.
+	-- Este parametro es para los NPC Informativos y de Misiones.
+	-- Ver "Explicacion de Dialogos" más abajo
+	dialogs = { },
+	
+	-- Este parametro se utiliza solo cuando el NPC es Comerciante. No puede tener firstDialog ni dialogs.
+	sell = { },
 }
 ```
 </details>
 
 ## Desglose de parámetros
 - **`npc`**: Nombre del modelo del NPC. Puedes encontrar todos los NPC [en este sitio](https://wiki.rage.mp/index.php?title=Peds)
+- **blipName**<sub><sup>(opcional)</sub></sup>: Nombre que aparecerá en el blip. Si no existe, será el mismo que `name`
 - **`name`**: Nombre del NPC que se mostrará en el dialogo
-- **`subtitle`**: Subtitulo del NPC, generalmente es su ocupación o rol
+- **`subtitle`**<sub><sup>(opcional)</sub></sup>: Subtitulo del NPC, generalmente es su ocupación o rol
 - **`coords`**: `/coords` de aparición del NPC
-- **`scenario`**: Reproducirá un scenario en el NPC. [Ver Lista de Scenarios](#Links-Utiles)
+- **`scenario`**<sub><sup>(opcional)</sub></sup>: Reproducirá un scenario en el NPC. [Ver Lista de Scenarios](#Links-Utiles)
+- **`camOffset`**<sub><sup>(opcional)</sub></sup>: `vector3(x,y,z)`, Sirve para compensar la posicion de la cámara si esque está mal ajustada
+- **`camRotation`**<sub><sup>(opcional)</sub></sup>: `vector3(x,y,z)`, Sirve para compensar la rotacion de la camara si esque está mal ajustada
+- **`interactionRange`**<sub><sup>(opcional)</sub></sup>: Distancia a la que el jugador puede interactuar con el NPC, por defecto: 2.5
+- **`noMissions`**<sub><sup>(opcional)</sub></sup>: Lista de textos que mostrará cuando el NPC no tenga ninguna misión.
+- **`firstDialog`**<sub><sup>(opcional)</sub></sup>: Abrirá el dialogo especificado al interactuar con el NPC.
+
+- <details><summary> 	
+		
+	#### `dialogs`	
+	</summary>
+	
+	- <details><summary> Identificador_Unico </summary> 
+	
+		- **`dialog`**: Texto que se mostrará al abrir el dialogo. (Básicamente es lo que el NPC habla)
+		- <details><summary> options </summary> 
+	
+			- **`text`**: Texto que se muestra en la opcion
+			- **`type`**: Tipo de opción (Ver [Tipos de Opciones](#Tipos-de-opciones))
+			- **`value`**: Valor del tipo especificado. (Si es dialog, ¿que dialogo?, si es mission, ¿que misión?)
+			- **`type`**: Tipo de opción
+		</details>
+	</details>
+</details>
+
+	
+- <details>
+	<summary> 
+	
+	#### `sell` 
+	</summary>
+	
+	- **`dialog`**: Dialogo que mostrará al abrir la interacción
+	- <details><summary> items </summary>
+	
+	  - <details><summary> require: item que se requiere </summary>
+	
+	    - **`item`**: Puede ser `money`, `xp`, o el nombre del item
+	    - **`weapon`**: Si es un arma, en lugar de `item`, se utiliza `weapon`
+	    - **`amount`**: Cantidad a dar del item especificado
+	    </details>
+	  - <details><summary> rewards: item que se obtendrá </summary>
+
+	    - **`item`**: Puede ser `money`, `xp`, o el nombre del item
+	    - **`weapon`**: Si es un arma, en lugar de `item`, se utiliza `weapon`
+	    - **`amount`**: Cantidad a dar del item especificado
+	    </details>
+	</details>
+</details>
 
 
+
+## Tipos de NPC
+Hasta la fecha, existen 3 tipos de NPC.
+- **Comerciantes**: Son NPCs que venderan, compraran o intercambiaran objetos con el jugador.
+	- Un NPC es Comerciante cuando tiene el parametro `sell`
+- **Informativos**: Son NPCs con dialogos y nada mas que eso. Sirve generalmente para informar sobre algo.
+	- Un NPC es Informativo cuando tiene el parametro `firstDialog` y `dialogs`
+- **Misiones**: Son NPCs que le darán misiones al jugador.
+	- Un NPC es de Misiones cuando tiene el parametro `dialogs` y tiene misiones disponibles. Tambien puede utilizar el parametro `noMissions`
+
+¿Se significa esto, finalmente?
+Significa que si un NPC es Comerciante, no podrá utilizar parametros como `firstDialog` o `dialogs`.
+Lo mismo para los otros tipos de NPC.
+
+## Tipos de opciones
+Este apartado busca informar los tipos de opciones que pueden existir en un dialogo.
+
+- **`dialog`**: Desplegará el dialogo especificado en el parametro `value` (Se debe pasar el identificador interno del dialogo)
+- **`mission`**: Comenzará la misión especificada en el parametro `value` (Se debe pasar el identificador interno de la misión)
+- **`close`**: Cerrará el dialogo con el NPC
+</details>
 
 # Explicación Dialogos
 Para comprender mejor la estructura del NPC, tomemos uno de los dialogos y analicemoslo.
 <details>
 	<summary>Mostrar ejemplo de diálogo</summary>
-
 
 ```lua
 ["Robbery_01"] = { 
