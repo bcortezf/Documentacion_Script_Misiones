@@ -3,15 +3,13 @@ Esta guía buscará documentar todos los parámetros que una misión pueda tener
 De manera que tras comprender la lectura, puedas crear tus propias misiones.
 
 ## Índice
+- [Documentación de NPC](#Documentación-de-NPC)
+  - [Ejemplo de NPC](#Ejemplo-de-NPC)
 - [Documentación de Misiones](#Documentación-de-Misiones)
   - [Índice](#Índice)
   - [Análisis de una misión](#Análisis-de-una-misión)
   - [Desglose de parámetros](#Desglose-de-parámetros)
   - [Tipos de Misiones](#Tipos-de-Misiones)
-
-- [Documentación de NPC](#Documentación-de-NPC)
-  - [Ejemplo de NPC](#Ejemplo-de-NPC)
-  
 - [Links Utiles](#Links-Utiles)
 
 
