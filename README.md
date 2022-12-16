@@ -15,6 +15,115 @@ De manera que tras comprender la lectura, puedas crear tus propias misiones.
 - [Links Utiles](#Links-Utiles)
 
 
+
+
+# Documentación de NPC
+Este apartado buscará entregar todos los parametros que un NPC pueda tener
+
+
+## Tipos de NPC
+Hasta la fecha, existen 3 tipos de NPC
+- **Informativos**: Son NPCs con dialogos y nada mas que eso. Sirve generalmente para informar sobre algo.
+- **Comerciantes**: Son NPCs que venderan, compraran o intercambiaran objetos con el jugador
+- **Misiones**: Son NPCs que le darán misiones al jugador.
+
+### Ejemplo de NPC
+<details> 
+	<summary> 	Mostrar</summary>
+
+```lua
+["Jorge_Herido"] = { -- Identificador Interno del NPC
+	-- Modelo del NPC. (https://forge.plebmasters.de/peds)
+	npc = 'a_m_y_bevhills_01', 
+	
+	-- Nombre del NPC que se mostrará en el dialogo
+	name = 'Joel', 
+
+	-- (opcional) Subtitulo
+	subtitle = 'Empleado de Rogers', 
+	
+	-- /coords de aparición del NPC
+	coords = vec(-627.34, -1567.17, 25.00, 181.67), 
+	
+	-- Define si el ped estará reproduciendo un Scenario (https://bit.ly/3ui4V3N)
+	scenario = "WORLD_HUMAN_STUPOR", 
+	
+	-- Parametros para arreglar la posición de la camara en caso de error
+	camOffset = vector3(0.85, 0.0, 0.0), 
+	
+	-- Parametros para arreglar la rotacion de la camara en caso de error
+	camRotation = vector3(-40.0, 0.0, 0.0),
+	
+	-- Distancia a la que debe estar el jugador para interactuar con el NPC
+	interactionRange = 2.5, 
+	
+	-- Lista de mensajes que mostrará cuando el NPC no tenga ninguna misión disponible.
+	noMissions = { "Agh.. estoy.. muriendo..", "Oh, mierda... *agh*" }, 
+	
+	
+	dialogs = { 
+		["Robbery_01"] = { 
+			dialog = 'Eh, tu.. Tengo un vehiculo para tí.. ¿Puedes entregarlo en un garage? Te pagaré bien..',
+			options = {
+				{ text = 'Vale', type = 'dialog', value = 'more_info' },
+				{ text = 'No, gracias', type = 'dialog', value = 'deny' },
+				{ text = 'OPCION ESPECIAL ', type = 'dialog', value = 'more_info', requiredItems = { { item = "medikit", amount = 1, removeOnInteract = true }	} },
+	},
+}, }
+}
+```
+</details>
+
+## Desglose de parámetros
+- **`npc`**: Nombre del modelo del NPC. Puedes encontrar todos los NPC [en este sitio](https://wiki.rage.mp/index.php?title=Peds)
+- **`name`**: Nombre del NPC que se mostrará en el dialogo
+- **`subtitle`**: Subtitulo del NPC, generalmente es su ocupación o rol
+- **`coords`**: `/coords` de aparición del NPC
+- **`scenario`**: Reproducirá un scenario en el NPC. [Ver Lista de Scenarios](#Links-Utiles)
+
+
+
+# Explicación Dialogos
+Para comprender mejor la estructura del NPC, tomemos uno de los dialogos y analicemoslo.
+<details>
+	<summary>Mostrar ejemplo de diálogo</summary>
+
+
+```lua
+["Robbery_01"] = { 
+	dialog = 'Eh, tu.. Tengo un vehiculo para tí.. ¿Puedes entregarlo en un garage? Te pagaré bien..',
+	options = {
+		{ text = 'Vale', type = 'dialog', value = 'more_info' },
+		{ text = 'No, gracias', type = 'dialog', value = 'deny' },
+		{ text = 'OPCION ESPECIAL ',
+		  type = 'dialog', 
+		  value = 'more_info',
+	          requiredItems = {	{ item = "medikit", amount = 1, removeOnInteract = true}	}
+		},
+	},
+},
+```
+</details>
+
+
+Un `dialog` tiene:
+- **`Identificador_Interno`**: Nombre único del dialogo. En este caso sería **`Robbery_01`**
+- **`dialog`**: Texto que mostrará en el diálogo. (Lo que hablará el NPC) 
+- **`options`**: Tipo de opciones que desplegará el diálogo. Cada opcion tiene 
+  - **`text`**: El texto de la opción, Texto que verá el usuario.
+  - **`type`**: Tipo de opción, puede ser:
+    - **`dialog`**: Desplegará el dialogo especificado en el parametro **`value`** (Se debe pasar el **identificador interno** del dialogo)
+    - **`mission`**: Comenzará la misión especificada en el parametro **`value`** (Se debe pasar el **identificador interno** de la misión)
+    - **`close`**: Cerrará el dialogo con el NPC
+  - **`value`**: Dependerá del parametro **`type`**.
+  - **`requiredItems`**: Mostrará la opcion solo si cuentas con los items especificados. En el ejemplo especificado, se mostrará la opción **`OPCION ESPECIAL`** solo si el jugador tiene **1 Botiquín** en su inventario
+
+
+Nota: Un dialogo puede tener muchas opciones, pero se verán limitadas por el espacio en pantalla. Lo máximo que he probado yo, son 6.
+
+
+
+
 ## Análisis de una misión
 Para comprender la estructura de una misión, primero hay que ver un ejemplo detallado:
 
@@ -106,105 +215,12 @@ Una misión tiene distintos tipos detallados a continuación:
 
 </details>
 
-# Documentación de NPC
-Este apartado buscará documentar todos los parametros que un NPC puede tener
-
-
-#### Ejemplo de NPC
-
-<details> 
-	<summary> Mostrar Detalle de Misión</summary>
-
-```lua
-["Jorge_Herido"] = {
-	-- Modelo del NPC. (https://wiki.rage.mp/index.php?title=Peds)
-	npc = 'a_m_y_bevhills_01', 
-	
-	-- Nombre del NPC que se mostrará en el dialogo
-	name = 'Joel', 
-
-	-- (opcional) Subtitulo
-	subtitle = 'Empleado de Rogers', 
-	
-	-- /coords de aparición del NPC
-	coords = vec(-627.34, -1567.17, 25.00, 181.67), 
-	
-	-- Define si el ped estará reproduciendo un Scenario (https://bit.ly/3ui4V3N)
-	scenario = "WORLD_HUMAN_STUPOR", 
-	
-	-- Parametros para arreglar la posición de la camara en caso de error
-	camOffset = vector3(0.85, 0.0, 0.0), 
-	
-	-- Parametros para arreglar la rotacion de la camara en caso de error
-	camRotation = vector3(-40.0, 0.0, 0.0),
-	
-	-- Distancia a la que debe estar el jugador para interactuar con el NPC
-	interactionRange = 2.5, 
-	
-	-- Lista de mensajes que mostrará cuando el NPC no tenga ninguna misión disponible.
-	noMissions = { "Agh.. estoy.. muriendo..", "Oh, mierda... *agh*" }, 
-	
-	
-	dialogs = { 
-		["Robbery_01"] = { 
-			dialog = 'Eh, tu.. Tengo un vehiculo para tí.. ¿Puedes entregarlo en un garage? Te pagaré bien..',
-			options = {
-				{ text = 'Vale', type = 'dialog', value = 'more_info' },
-				{ text = 'No, gracias', type = 'dialog', value = 'deny' },
-				{ text = 'OPCION ESPECIAL ', type = 'dialog', value = 'more_info', requiredItems = { { item = "medikit", amount = 1, removeOnInteract = true }	} },
-	},
-}, }
-}
-```
-</details>
-
-## Desglose de parámetros
-- **`npc`**: Nombre del modelo del NPC. Puedes encontrar todos los NPC [en este sitio](https://wiki.rage.mp/index.php?title=Peds)
-- **`name`**: Nombre del NPC que se mostrará en el dialogo
-
-
-
-# Explicación Dialogos
-Para comprender mejor la estructura del NPC, tomemos uno de los dialogos y analicemoslo.
-<details>
-	<summary>Mostrar ejemplo de diálogo</summary>
-
-
-```lua
-["Robbery_01"] = { 
-	dialog = 'Eh, tu.. Tengo un vehiculo para tí.. ¿Puedes entregarlo en un garage? Te pagaré bien..',
-	options = {
-		{ text = 'Vale', type = 'dialog', value = 'more_info' },
-		{ text = 'No, gracias', type = 'dialog', value = 'deny' },
-		{ text = 'OPCION ESPECIAL ',
-		  type = 'dialog', 
-		  value = 'more_info',
-	          requiredItems = {	{ item = "medikit", amount = 1, removeOnInteract = true}	}
-		},
-	},
-},
-```
-</details>
-
-
-Un `dialog` tiene:
-- **`Identificador_Interno`**: Nombre único del dialogo. En este caso sería **`Robbery_01`**
-- **`dialog`**: Texto que mostrará en el diálogo. (Lo que hablará el NPC) 
-- **`options`**: Tipo de opciones que desplegará el diálogo. Cada opcion tiene 
-  - **`text`**: El texto de la opción, Texto que verá el usuario.
-  - **`type`**: Tipo de opción, puede ser:
-    - **`dialog`**: Desplegará el dialogo especificado en el parametro **`value`** (Se debe pasar el **identificador interno** del dialogo)
-    - **`mission`**: Comenzará la misión especificada en el parametro **`value`** (Se debe pasar el **identificador interno** de la misión)
-    - **`close`**: Cerrará el dialogo con el NPC
-  - **`value`**: Dependerá del parametro **`type`**.
-  - **`requiredItems`**: Mostrará la opcion solo si cuentas con los items especificados. En el ejemplo especificado, se mostrará la opción **`OPCION ESPECIAL`** solo si el jugador tiene **1 Botiquín** en su inventario
-
-
-Nota: Un dialogo puede tener muchas opciones, pero se verán limitadas por el espacio en pantalla. Lo máximo que he probado yo, son 6.
 
 
 # Links Utiles
 
 ### [Lista de Peds](https://forge.plebmasters.de/peds)
+### [Lista de Objetos](https://forge.plebmasters.de/objects)
+### [Lista de Scenarios](https://github.com/DurtyFree/gta-v-data-dumps/blob/master/scenariosCompact.json)
 
 
