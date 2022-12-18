@@ -88,7 +88,7 @@ Este apartado buscará entregar todos los parametros que un NPC pueda tener
 	
 	- <details><summary> Identificador_Unico </summary> 
 	
-		- **`dialog`**: Texto que se mostrará al abrir el dialogo. (Básicamente es lo que el NPC habla)
+		- **`label`**: Texto que se mostrará al abrir el dialogo. (Básicamente es lo que el NPC habla)
 		- <details><summary> options </summary> 
 	
 			- **`text`**: Texto que se muestra en la opcion
@@ -106,7 +106,7 @@ Este apartado buscará entregar todos los parametros que un NPC pueda tener
 	#### `sell` 
 	</summary>
 	
-	- **`dialog`**: Dialogo que mostrará al abrir la interacción
+	- **`label`**: Dialogo que mostrará al abrir la interacción
 	- <details><summary> items </summary>
 	
 	  - <details><summary> require: item que se requiere </summary>
@@ -154,7 +154,7 @@ Para comprender mejor la estructura del NPC, tomemos uno de los dialogos y anali
 
 ```lua
 ["Robbery_01"] = { 
-	dialog = 'Eh, tu.. Tengo un vehiculo para tí.. ¿Puedes entregarlo en un garage? Te pagaré bien..',
+	label = 'Eh, tu.. Tengo un vehiculo para tí.. ¿Puedes entregarlo en un garage? Te pagaré bien..',
 	options = {
 		{ text = 'Vale', type = 'dialog', value = 'more_info' },
 		{ text = 'No, gracias', type = 'dialog', value = 'deny' },
@@ -171,7 +171,7 @@ Para comprender mejor la estructura del NPC, tomemos uno de los dialogos y anali
 
 Un `dialog` tiene:
 - **`Identificador_Interno`**: Nombre único del dialogo. En este caso sería **`Robbery_01`**
-- **`dialog`**: Texto que mostrará en el diálogo. (Lo que hablará el NPC) 
+- **`label`**: Texto que mostrará en el diálogo. (Lo que hablará el NPC) 
 - **`options`**: Tipo de opciones que desplegará el diálogo. Cada opcion tiene 
   - **`text`**: El texto de la opción, Texto que verá el usuario.
   - **`type`**: Tipo de opción, puede ser:
@@ -182,10 +182,7 @@ Un `dialog` tiene:
   - **`requiredItems`**: Mostrará la opcion solo si cuentas con los items especificados. En el ejemplo especificado, se mostrará la opción **`OPCION ESPECIAL`** solo si el jugador tiene **1 Botiquín** en su inventario
 
 
-Nota: Un dialogo puede tener muchas opciones, pero se verán limitadas por el espacio en pantalla. Lo máximo que he probado yo, son 6.
-
-
-
+Nota: Un dialogo puede tener muchas opciones, pero se verán limitadas por el espacio en pantalla. Lo máximo que he probado yo, son 10.
 
 ## Análisis de una misión
 Para comprender la estructura de una misión, primero hay que ver un ejemplo detallado:
