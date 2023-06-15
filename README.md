@@ -257,7 +257,9 @@ Todas las misiones tienen un tipo de misión asociado a ella, dentro de esos tip
 
 	
 <details><summary> transport </summary>
+
 Corresponde a una misión de transporte, donde debe llevarse un vehículo del punto A al punto B.
+
 - **`vehicle`**: modelo del vehiculo a transportar
 - **`from`**: `/coords` de aparición del vehículo
 - **`to`**: `/coords` de entrega del vehículo
