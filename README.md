@@ -259,7 +259,7 @@ Todas las misiones tienen un tipo de misión asociado a ella, dentro de esos tip
 <details><summary> transport </summary>
 
 Corresponde a una misión de transporte, donde debe llevarse un vehículo del punto A al punto B.
-
+Parámetros:
 - **`vehicle`**: modelo del vehiculo a transportar
 - **`from`**: `/coords` de aparición del vehículo
 - **`to`**: `/coords` de entrega del vehículo
@@ -268,6 +268,10 @@ Corresponde a una misión de transporte, donde debe llevarse un vehículo del pu
 
 <details><summary> waypoint </summary>
 
+Corresponde a una misión de destino. Debes llegar a un punto en específico. La misión se completará apenas llegues al destino.
+Puede iniciar otra misión tras llegar al punto.
+
+Parámetros:
 - **`coords`**: `/coords` de destino
 - **`msgAtArrival`**: Mensaje que aparecerá al llegar al destino
 - **`timer`**: Tiempo límite en segundos para llegar al destino. Si llega a 0, termina la misión
