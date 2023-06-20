@@ -278,6 +278,10 @@ Parámetros:
 - **`npc`**: Si este parametro existe, significa que el NPC especificado, te seguirá durante tu trayecto.
 	-  **`name`**: Identificador_Unico del NPC
 	- (Se agregarán más parametros)
+- **`enemies`**: Agregará enemigos esperando en el punto de destino.
+	- **`model`**: Modelo del ped
+	- **`weapon`**: Nombre del arma con el cual aparecerá (ej. `WEAPON_KNIFE`)
+	- **`coords`**: Coordenadas de aparición del ped 
 
 </details>
 
