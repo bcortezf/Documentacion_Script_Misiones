@@ -70,7 +70,7 @@ Este apartado buscará entregar todos los parametros que un NPC pueda tener
 
 ## Desglose de parámetros
 - **`npc`**: Nombre del modelo del NPC. Puedes encontrar todos los NPC [en este sitio](https://wiki.rage.mp/index.php?title=Peds)
-- **blipName**<sub><sup>(opcional)</sub></sup>: Nombre que aparecerá en el blip. Si no existe, será el mismo que `name`
+- **`blipName`**<sub><sup>(opcional)</sub></sup>: Nombre que aparecerá en el blip. Si no existe, será el mismo que `name`
 - **`name`**: Nombre del NPC que se mostrará en el dialogo
 - **`subtitle`**<sub><sup>(opcional)</sub></sup>: Subtitulo del NPC, generalmente es su ocupación o rol
 - **`coords`**: `/coords` de aparición del NPC
